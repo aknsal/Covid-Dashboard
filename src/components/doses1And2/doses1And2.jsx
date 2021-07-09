@@ -1,4 +1,4 @@
-import { Typograpy, Container, Grid } from "@material-ui/core";
+import { Typography, Container, Grid } from "@material-ui/core";
 import FirstOrSecondDoseCard from "../firstOrSecondDoseCard/firstOrSecondDoseCard";
 
 function Doses1And2() {

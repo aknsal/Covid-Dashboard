@@ -2,6 +2,7 @@ import VaccinationDetails from "../../components/vaccinationDetails/vaccinationD
 import PercentageVaccinated from "../../components/percentageVaccinated/percentageVaccinated";
 import CentersAvailable from "../../components/centersAvailable/centersAvailable";
 import TotalRegistrations from "../../components/totalRegistrations/totalRegistrations";
+import CovidUpdates from "../../components/covidUpdates/covidUpdates";
 import { Container, Grid } from "@material-ui/core";
 import "./homepage.css";
 
@@ -27,6 +28,7 @@ function HomePage() {
           </Grid>
         </Grid>
       </Container>
+      <CovidUpdates />
     </div>
   );
 }
