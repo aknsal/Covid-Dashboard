@@ -24,7 +24,7 @@ function TotalVaccinationDoses() {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography variant="h4">Total Vaccination Doses</Typography>
+        <Typography variant="h4">Total Vaccinations Done</Typography>
         <Typography variant="h3" className={classes.pos} color="default">
           36,38,66,177
         </Typography>
