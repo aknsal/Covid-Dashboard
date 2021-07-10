@@ -13,6 +13,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Copyright from "../copyright/copyright";
 import "./signinCard.css";
+import {
+  facebookProvider,
+  githubProvider,
+  googleProvider,
+} from "../../config/authMethod";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SigninCard() {
+export default function SigninCard({ handleSocialMediaLoginClick }) {
   const classes = useStyles();
 
   const [email, setEmail] = useState("");
@@ -126,13 +131,25 @@ export default function SigninCard() {
 
           <Grid container justifyContent="space-around">
             <Grid item>
-              <a href="#" class="fa fa-facebook"></a>
+              <a
+                href="#"
+                class="fa fa-facebook"
+                onClick={() => handleSocialMediaLoginClick(facebookProvider)}
+              ></a>
             </Grid>
             <Grid item>
-              <a href="#" class="fa fa-twitter"></a>
+              <a
+                href="#"
+                class="fa fa-github"
+                onClick={() => handleSocialMediaLoginClick(githubProvider)}
+              ></a>
             </Grid>
             <Grid item>
-              <a href="#" class="fa fa-google"></a>
+              <a
+                href="#"
+                class="fa fa-google"
+                onClick={() => handleSocialMediaLoginClick(googleProvider)}
+              ></a>
             </Grid>
           </Grid>
         </div>

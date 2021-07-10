@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default function Layout({ children }) {
+export default function Layout({ children, isLoggedin, handleLogout }) {
   const classes = useStyles();
   return (
     <div>
@@ -33,9 +33,15 @@ export default function Layout({ children }) {
               <Button color="inherit">FAQ's</Button>
             </Grid>
             <Grid item>
-              <Button color="inherit" href="/signin">
-                Login
-              </Button>
+              {isLoggedin ? (
+                <Button color="inherit" onClick={handleLogout}>
+                  Logout
+                </Button>
+              ) : (
+                <Button color="inherit" href="/signin">
+                  Login
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Toolbar>
