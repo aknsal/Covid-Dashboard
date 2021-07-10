@@ -1,5 +1,7 @@
 import { AppBar, Toolbar, Button, Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { useAuth } from "../context/authContext";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -7,20 +9,34 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default function Layout({ children, isLoggedin, handleLogout }) {
+export default function Layout({
+  children,
+  isLoggedin,
+  handleLogout,
+  logoutEmailAndPassWord,
+}) {
   const classes = useStyles();
+  const history = useHistory();
+  const { currentUser, logout } = useAuth();
+
+  async function handleLogoutEmailAndPassWord() {
+    try {
+      await logout();
+      logoutEmailAndPassWord();
+      history.push("/signin");
+      console.log("Logged Out Successfully");
+    } catch (err) {
+      console.log("Failed to Log Out", err);
+      console.log(currentUser.email);
+    }
+  }
+
   return (
     <div>
       <AppBar style={{ backgroundColor: "#386b5f" }}>
         <Toolbar>
           <Typography variant="h4">CoviC</Typography>
-          <Grid
-            container
-            flexDirection="row"
-            justifyContent="flex-end"
-            alignItems="center"
-            flexGrow={1}
-          >
+          <Grid container justifyContent="flex-end" alignItems="center">
             <Grid item>
               <Button color="inherit" href="/">
                 Home
@@ -34,7 +50,12 @@ export default function Layout({ children, isLoggedin, handleLogout }) {
             </Grid>
             <Grid item>
               {isLoggedin ? (
-                <Button color="inherit" onClick={handleLogout}>
+                <Button
+                  color="inherit"
+                  onClick={
+                    currentUser ? handleLogoutEmailAndPassWord : handleLogout
+                  }
+                >
                   Logout
                 </Button>
               ) : (

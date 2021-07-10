@@ -2,12 +2,15 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import React, { useState } from "react";
 import HomePage from "./pages/homepage/homepage";
 import SignIn from "./pages/signIn/signIn";
+import Signup from "./pages/signup/signup";
 import Layout from "./components/layout";
 import { createTheme, ThemeProvider } from "@material-ui/core";
 import "./App.css";
 import { react } from "@babel/types";
 import socialMediaAuth from "./service/auth";
 import logout from "./service/logout";
+import { AuthProvider } from "./context/authContext";
+import ForgotPassword from "./pages/forgotPassword/forgotPassword";
 
 const theme = createTheme({
   palette: {
@@ -29,30 +32,56 @@ function App() {
       setisLoggedin(true);
     }
   };
+
+  const emailAndPasswordAuthenticated = () => {
+    console.log("email And Password Authenticated");
+    setisLoggedin(true);
+  };
+
   const handleLogout = async () => {
     logout();
     setisLoggedin(false);
     console.log("logged Out");
   };
+
+  const logoutEmailAndPassword = () => {
+    setisLoggedin(false);
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        <div className="App">
-          <Layout isLoggedin={isLoggedin} handleLogout={handleLogout}>
-            <Switch>
-              <Route exact path="/">
-                <HomePage />
-              </Route>
-              <Route path="/signin">
-                <SignIn
-                  handleSocialMediaLoginClick={handleSocialMediaLoginClick}
-                />
-              </Route>
-            </Switch>
-          </Layout>
-        </div>
-      </Router>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <div className="App">
+            <Layout
+              isLoggedin={isLoggedin}
+              handleLogout={handleLogout}
+              logoutEmailAndPassword={logoutEmailAndPassword}
+            >
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route path="/signin">
+                  <SignIn
+                    handleSocialMediaLoginClick={handleSocialMediaLoginClick}
+                    emailAndPasswordAuthenticated={
+                      emailAndPasswordAuthenticated
+                    }
+                  />
+                </Route>
+                <Route path="/signup">
+                  <Signup />
+                </Route>
+                <Route path="/forgotpassword">
+                  <ForgotPassword />
+                </Route>
+              </Switch>
+            </Layout>
+          </div>
+        </Router>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 

@@ -1,16 +1,16 @@
-import SigninCard from "../../components/signinCard/signinCard";
-import "./signIn.css";
+import ForgotPassword from "../../components/forgotPasswordCard.jsx/forgotPasswordCard";
+import "./forgotPassword.css";
 
 function SignIn({
   handleSocialMediaLoginClick,
   emailAndPasswordAuthenticated,
 }) {
   return (
-    <SigninCard
+    <ForgotPassword
       handleSocialMediaLoginClick={handleSocialMediaLoginClick}
       emailAndPasswordAuthenticated={emailAndPasswordAuthenticated}
     />
   );
 }
 
-export default SignIn;
+export default ForgotPassword;

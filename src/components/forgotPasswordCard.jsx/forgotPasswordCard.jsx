@@ -1,3 +1,4 @@
+import "./forgotPasswordCard.css";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import Button from "@material-ui/core/Button";
@@ -14,12 +15,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Copyright from "../copyright/copyright";
-import "./signinCard.css";
-import {
-  facebookProvider,
-  githubProvider,
-  googleProvider,
-} from "../../config/authMethod";
 import { useAuth } from "../../context/authContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -41,24 +36,20 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   submit: {
-    margin: theme.spacing(1, 0, 2),
+    margin: theme.spacing(4, 0, 4),
   },
 }));
 
-export default function SigninCard({
-  handleSocialMediaLoginClick,
-  emailAndPasswordAuthenticated,
-}) {
+export default function ForgotPasswordCard() {
   const classes = useStyles();
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [authError, setAuthError] = useState("");
+  const [resetPasswordError, setResetPasswordError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const history = useHistory();
-  const { login } = useAuth();
+  const { resetPassword } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -71,40 +62,38 @@ export default function SigninCard({
       setEmailError(false);
     }
 
-    if (password === "") {
-      setPasswordError(true);
-    }
-
-    if (password !== "") {
-      setPasswordError(false);
-    }
-
-    if (email && password) {
-      console.log(email, password);
+    if (email) {
+      console.log(email);
     }
 
     try {
+      setMessage("");
+      setResetPasswordError("");
       setLoading(true);
-      await login(email, password);
-      history.push("/");
-      emailAndPasswordAuthenticated();
+      await resetPassword(email);
+      setMessage("Check your inbox for further instructions");
     } catch (error) {
-      setAuthError("Failed to Login");
+      setResetPasswordError("Request Failed");
+      console.log(error);
     }
     setLoading(false);
   }
 
   return (
-    <div className="signin-card">
+    <div className="forgot-password-card">
       <Container maxWidth="xs" className={classes.container}>
         <CssBaseline />
         <div className={classes.paper}>
-          <Typography variant="h4">Sign in</Typography>
-          {authError && <Alert severity="error">{authError}</Alert>}
+          <Typography variant="h4">Reset PassWord</Typography>
+          {resetPasswordError && (
+            <Alert severity="error">{resetPasswordError}</Alert>
+          )}
+          {message && <Alert severity="success">{message}</Alert>}
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               fullWidth
+              margin="normal"
               id="email"
               label="Email Address"
               name="email"
@@ -114,74 +103,26 @@ export default function SigninCard({
               onChange={(e) => setEmail(e.target.value)}
               error={emailError}
             />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={(e) => setPassword(e.target.value)}
-              error={passwordError}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
             <Button
               variant="contained"
               type="submit"
+              margin="normal"
               fullWidth
               color="primary"
               className={classes.submit}
               disabled={loading}
             >
-              Sign In
+              Submit
             </Button>
-            <Grid container justifyContent="space-between">
+            <Grid container justifyContent="center">
               <Grid item>
-                <Link href="/forgotpassword" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  Register Now!
+                <Link href="/signin" variant="body2">
+                  Back To Login
                 </Link>
               </Grid>
             </Grid>
           </form>
-          <div className="content">
-            <p className="or">or</p>
-            <Typography>Login Using</Typography>
-          </div>
-
-          <Grid container justifyContent="space-around">
-            <Grid item>
-              <a
-                href="#"
-                class="fa fa-facebook"
-                onClick={() => handleSocialMediaLoginClick(facebookProvider)}
-              ></a>
-            </Grid>
-            <Grid item>
-              <a
-                href="#"
-                class="fa fa-github"
-                onClick={() => handleSocialMediaLoginClick(githubProvider)}
-              ></a>
-            </Grid>
-            <Grid item>
-              <a
-                href="#"
-                class="fa fa-google"
-                onClick={() => handleSocialMediaLoginClick(googleProvider)}
-              ></a>
-            </Grid>
-          </Grid>
         </div>
       </Container>
       <Box mt={8}>
