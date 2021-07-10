@@ -22,7 +22,9 @@ export default function Layout({ children }) {
             flexGrow={1}
           >
             <Grid item>
-              <Button color="inherit">Home</Button>
+              <Button color="inherit" href="/">
+                Home
+              </Button>
             </Grid>
             <Grid item>
               <Button color="inherit">Find Vaccination Centre</Button>
@@ -31,7 +33,9 @@ export default function Layout({ children }) {
               <Button color="inherit">FAQ's</Button>
             </Grid>
             <Grid item>
-              <Button color="inherit">Login</Button>
+              <Button color="inherit" href="/signin">
+                Login
+              </Button>
             </Grid>
           </Grid>
         </Toolbar>
