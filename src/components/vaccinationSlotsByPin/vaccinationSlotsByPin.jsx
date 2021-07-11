@@ -36,6 +36,10 @@ const useStyles = makeStyles((theme) => ({
     width: "60%",
   },
 }));
+const current = new Date();
+const date = `${current.getDate()}-${
+  current.getMonth() + 1
+}-${current.getFullYear()}`;
 
 const columns = [
   { field: "name", headerName: "Name", width: "340px" },
@@ -64,7 +68,7 @@ export default function VaccinationSlotsByPin({ darkMode }) {
 
   async function loadSlots() {
     const response = await fetch(
-      `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pincode}&date=31-03-2021`
+      `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pincode}&date=${date}`
     );
     const data = await response.json();
     return data;
