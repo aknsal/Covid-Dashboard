@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import HomePage from "./pages/homepage/homepage";
 import SignIn from "./pages/signIn/signIn";
 import Signup from "./pages/signup/signup";
+import VaccinationSlots from "./pages/vaccinationSlots/vaccinationSlots";
 import Layout from "./components/layout";
 import { createTheme, Paper, ThemeProvider } from "@material-ui/core";
 import "./App.css";
@@ -99,6 +100,9 @@ function App() {
                   </Route>
                   <Route path="/forgotpassword">
                     <ForgotPassword darkMode={darkMode} />
+                  </Route>
+                  <Route path="/vaccinationslots">
+                    <VaccinationSlots darkMode={darkMode} />
                   </Route>
                 </Switch>
               </Layout>

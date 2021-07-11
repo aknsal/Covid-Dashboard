@@ -54,7 +54,9 @@ export default function Layout({
               </Button>
             </Grid>
             <Grid item>
-              <Button color="inherit">Find Vaccination Centre</Button>
+              <Button href="/vaccinationslots" color="inherit">
+                Find Vaccination Centre
+              </Button>
             </Grid>
             <Grid item>
               <Button color="inherit">FAQ's</Button>
