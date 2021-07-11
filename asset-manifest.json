@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/WebD-Selection/static/css/main.80f9fc24.chunk.css",
+    "main.js": "/WebD-Selection/static/js/main.3dcb0798.chunk.js",
+    "main.js.map": "/WebD-Selection/static/js/main.3dcb0798.chunk.js.map",
+    "runtime-main.js": "/WebD-Selection/static/js/runtime-main.2699e63a.js",
+    "runtime-main.js.map": "/WebD-Selection/static/js/runtime-main.2699e63a.js.map",
+    "static/js/2.3c967e77.chunk.js": "/WebD-Selection/static/js/2.3c967e77.chunk.js",
+    "static/js/2.3c967e77.chunk.js.map": "/WebD-Selection/static/js/2.3c967e77.chunk.js.map",
+    "static/js/3.2af5328b.chunk.js": "/WebD-Selection/static/js/3.2af5328b.chunk.js",
+    "static/js/3.2af5328b.chunk.js.map": "/WebD-Selection/static/js/3.2af5328b.chunk.js.map",
+    "index.html": "/WebD-Selection/index.html",
+    "static/css/main.80f9fc24.chunk.css.map": "/WebD-Selection/static/css/main.80f9fc24.chunk.css.map",
+    "static/js/2.3c967e77.chunk.js.LICENSE.txt": "/WebD-Selection/static/js/2.3c967e77.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2699e63a.js",
+    "static/js/2.3c967e77.chunk.js",
+    "static/css/main.80f9fc24.chunk.css",
+    "static/js/main.3dcb0798.chunk.js"
+  ]
+}
