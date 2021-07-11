@@ -55,7 +55,6 @@ function App() {
     if (res) {
       setisLoggedin(true);
       setSocialMediaUser(res);
-      history.push("/");
     }
   };
 
@@ -68,7 +67,7 @@ function App() {
     logout();
     setisLoggedin(false);
     setSocialMediaUser({});
-    console.log("logged Out");
+    console.log("logged Out Social Media");
   };
 
   const logoutEmailAndPassword = () => {

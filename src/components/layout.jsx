@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => {
       cursor: "pointer",
       fontSize: "3rem",
       marginRight: "1rem",
+      marginBottom: theme.spacing(1),
+      textDecoration: "none",
+      color: "#5ef7c2",
     },
   };
 });
@@ -50,7 +53,9 @@ export default function Layout({
     <div>
       <AppBar style={{ backgroundColor: "#386b5f" }}>
         <Toolbar>
-          <a className={classes.brand}>CoviC</a>
+          <a href="/" className={classes.brand}>
+            CoviC
+          </a>
           <Switch checked={darkMode} onChange={darkModeSwitchHandler} />
 
           <Grid container justifyContent="flex-end" alignItems="center">
@@ -67,9 +72,9 @@ export default function Layout({
             <Grid item>
               <Button color="inherit">FAQ's</Button>
             </Grid>
-
+            {console.log(socialMediaUser, "Social media User")}
             <Grid item>
-              {isLoggedin || socialMediaUser ? (
+              {isLoggedin ? (
                 <Button
                   color="inherit"
                   onClick={
