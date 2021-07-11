@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -57,7 +56,6 @@ export default function SigninCard({
   const [passwordError, setPasswordError] = useState(false);
   const [authError, setAuthError] = useState("");
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
   const { login } = useAuth();
 
   async function handleSubmit(e) {
@@ -86,7 +84,6 @@ export default function SigninCard({
     try {
       setLoading(true);
       await login(email, password);
-      history.push("/");
       emailAndPasswordAuthenticated();
     } catch (error) {
       setAuthError("Failed to Login");

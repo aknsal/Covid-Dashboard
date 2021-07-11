@@ -1,15 +1,21 @@
 import VaccinationDetails from "../../components/vaccinationDetails/vaccinationDetails";
 import PercentageVaccinated from "../../components/percentageVaccinated/percentageVaccinated";
 import CentersAvailable from "../../components/centersAvailable/centersAvailable";
-import TotalRegistrations from "../../components/totalRegistrations/totalRegistrations";
 import CovidUpdates from "../../components/covidUpdates/covidUpdates";
-import { Container, Grid } from "@material-ui/core";
+import { Container, Grid, Typography } from "@material-ui/core";
 import "./homepage.css";
+import { useAuth } from "../../context/authContext";
 
-function HomePage({ darkMode }) {
+function HomePage({ darkMode, socialMediaUser }) {
+  const { currentUser } = useAuth();
+  console.log(currentUser);
   return (
     <div className="content-container">
       <Container>
+        <Typography variant="h3">DASHBOARD </Typography>
+        <Typography>{currentUser ? currentUser.email : ""}</Typography>
+        <Typography>{socialMediaUser ? socialMediaUser.email : ""}</Typography>
+        <hr />
         <Grid
           container
           spacing={2}

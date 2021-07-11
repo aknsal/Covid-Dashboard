@@ -1,5 +1,6 @@
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import HomePage from "./pages/homepage/homepage";
 import SignIn from "./pages/signIn/signIn";
 import Signup from "./pages/signup/signup";
@@ -12,11 +13,12 @@ import socialMediaAuth from "./service/auth";
 import logout from "./service/logout";
 import { AuthProvider } from "./context/authContext";
 import ForgotPassword from "./pages/forgotPassword/forgotPassword";
-import { dark } from "@material-ui/core/styles/createPalette";
 
 function App() {
   const [isLoggedin, setisLoggedin] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [socialMediaUser, setSocialMediaUser] = useState({});
+  const history = useHistory();
 
   const darkTheme = createTheme({
     palette: {
@@ -52,6 +54,8 @@ function App() {
     console.log(res);
     if (res) {
       setisLoggedin(true);
+      setSocialMediaUser(res);
+      history.push("/");
     }
   };
 
@@ -63,12 +67,15 @@ function App() {
   const handleLogout = async () => {
     logout();
     setisLoggedin(false);
+    setSocialMediaUser({});
     console.log("logged Out");
   };
 
   const logoutEmailAndPassword = () => {
     setisLoggedin(false);
   };
+
+  console.log("is logged in", isLoggedin);
 
   return (
     <AuthProvider>
@@ -81,10 +88,14 @@ function App() {
                 handleLogout={handleLogout}
                 logoutEmailAndPassword={logoutEmailAndPassword}
                 darkModeSwitchHandler={darkModeSwitchHandler}
+                socialMediaUser={socialMediaUser}
               >
                 <Switch>
                   <Route exact path="/">
-                    <HomePage darkMode={darkMode} />
+                    <HomePage
+                      darkMode={darkMode}
+                      socialMediaUser={socialMediaUser}
+                    />
                   </Route>
                   <Route path="/signin">
                     <SignIn

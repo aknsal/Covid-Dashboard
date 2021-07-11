@@ -5,7 +5,6 @@ import {
   Typography,
   Button,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 
 function FirstOrSecondDoseCard({ title, data, increment, cardColor }) {
   return (

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
-import Paper from "@material-ui/core/Paper";
 import "./percentageVaccinatedChart.css";
 
 function PercentageVaccinatedChart() {

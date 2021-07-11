@@ -13,6 +13,11 @@ import { useHistory } from "react-router";
 const useStyles = makeStyles((theme) => {
   return {
     toolbar: theme.mixins.toolbar,
+    brand: {
+      cursor: "pointer",
+      fontSize: "3rem",
+      marginRight: "1rem",
+    },
   };
 });
 
@@ -23,6 +28,7 @@ export default function Layout({
   logoutEmailAndPassWord,
   darkModeSwitchHandler,
   darkMode,
+  socialMediaUser,
 }) {
   const classes = useStyles();
   const history = useHistory();
@@ -44,7 +50,7 @@ export default function Layout({
     <div>
       <AppBar style={{ backgroundColor: "#386b5f" }}>
         <Toolbar>
-          <Typography variant="h4">CoviC</Typography>
+          <a className={classes.brand}>CoviC</a>
           <Switch checked={darkMode} onChange={darkModeSwitchHandler} />
 
           <Grid container justifyContent="flex-end" alignItems="center">
@@ -63,7 +69,7 @@ export default function Layout({
             </Grid>
 
             <Grid item>
-              {isLoggedin ? (
+              {isLoggedin || socialMediaUser ? (
                 <Button
                   color="inherit"
                   onClick={
