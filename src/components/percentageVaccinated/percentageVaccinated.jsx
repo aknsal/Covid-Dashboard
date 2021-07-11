@@ -9,10 +9,20 @@ import {
 } from "@material-ui/core";
 import PercentageVaccinatedChart from "../percentageVaccinatedChart/percentageVaccinatedChart";
 
-function PercentageVaccinated() {
+function PercentageVaccinated({ darkMode }) {
+  let percentageVaccinatedCardColor = "";
+
+  if (darkMode) {
+    percentageVaccinatedCardColor = "#023300";
+    console.log("DarkMode True");
+  } else {
+    percentageVaccinatedCardColor = "#c4ffc2";
+    console.log("DarkMode False");
+  }
+
   return (
     <div>
-      <Card style={{ backgroundColor: "#c4ffc2" }}>
+      <Card style={{ backgroundColor: percentageVaccinatedCardColor }}>
         <CardHeader title="Percentage of Population Vaccinated"></CardHeader>
 
         <PercentageVaccinatedChart />

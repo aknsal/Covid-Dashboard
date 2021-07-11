@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    backgroundColor: "#93fadb",
   },
   bullet: {
     display: "inline-block",
@@ -18,11 +17,24 @@ const useStyles = makeStyles({
   },
 });
 
-function TotalVaccinationDoses() {
+function TotalVaccinationDoses({ darkMode }) {
   const classes = useStyles();
 
+  let totalVaccinationDosesCardColor = "";
+
+  if (darkMode) {
+    totalVaccinationDosesCardColor = "#023123";
+    console.log("DarkMode True in Home Page", darkMode);
+  } else {
+    totalVaccinationDosesCardColor = "#93fadb";
+    console.log("DarkMode False");
+  }
+
   return (
-    <Card className={classes.root}>
+    <Card
+      style={{ backgroundColor: totalVaccinationDosesCardColor }}
+      className={classes.root}
+    >
       <CardContent>
         <Typography variant="h4">Total Vaccinations Done</Typography>
         <Typography variant="h3" className={classes.pos}>

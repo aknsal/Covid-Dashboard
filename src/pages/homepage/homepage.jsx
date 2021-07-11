@@ -6,7 +6,7 @@ import CovidUpdates from "../../components/covidUpdates/covidUpdates";
 import { Container, Grid } from "@material-ui/core";
 import "./homepage.css";
 
-function HomePage() {
+function HomePage({ darkMode }) {
   return (
     <div className="content-container">
       <Container>
@@ -18,17 +18,17 @@ function HomePage() {
           alignItems="stretch"
         >
           <Grid item md={6} sm={10} xs={11}>
-            <VaccinationDetails />
+            <VaccinationDetails darkMode={darkMode} />
           </Grid>
           <Grid item md={3} sm={5} xs={11}>
-            <PercentageVaccinated />
+            <PercentageVaccinated darkMode={darkMode} />
           </Grid>
           <Grid item md={3} sm={5} xs={11}>
-            <CentersAvailable />
+            <CentersAvailable darkMode={darkMode} />
           </Grid>
         </Grid>
       </Container>
-      <CovidUpdates />
+      <CovidUpdates darkMode={darkMode} />
     </div>
   );
 }

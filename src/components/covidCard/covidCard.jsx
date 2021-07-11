@@ -7,14 +7,26 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-function CovidCard({ title, data, increment }) {
+function CovidCard({ title, data, increment, darkMode }) {
   let color = "";
   if (title === "Total Cases") {
-    color = "#ffe785";
+    if (darkMode) {
+      color = "#4d3d00";
+    } else {
+      color = "#ffe785";
+    }
   } else if (title === "Recovered") {
-    color = "#9cff66";
+    if (darkMode) {
+      color = "#123300";
+    } else {
+      color = "#9cff66";
+    }
   } else {
-    color = "#ff8787";
+    if (darkMode) {
+      color = "#330000";
+    } else {
+      color = "#ff8787";
+    }
   }
   return (
     <Card style={{ backgroundColor: color }}>

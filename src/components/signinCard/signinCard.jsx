@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   container: {
-    backgroundColor: "#eef7f4",
     borderRadius: "1rem",
     paddingBottom: theme.spacing(3),
   },
@@ -48,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SigninCard({
   handleSocialMediaLoginClick,
   emailAndPasswordAuthenticated,
+  darkMode,
 }) {
   const classes = useStyles();
 
@@ -94,12 +94,28 @@ export default function SigninCard({
     setLoading(false);
   }
 
+  let signinBackgroundColor = "";
+
+  if (darkMode) {
+    signinBackgroundColor = "#2b302e";
+    console.log("DarkMode True");
+  } else {
+    signinBackgroundColor = "#ebfff6";
+    console.log("DarkMode False");
+  }
+
   return (
     <div className="signin-card">
-      <Container maxWidth="xs" className={classes.container}>
+      <Container
+        style={{ backgroundColor: signinBackgroundColor }}
+        maxWidth="xs"
+        className={classes.container}
+      >
         <CssBaseline />
         <div className={classes.paper}>
-          <Typography variant="h4">Sign in</Typography>
+          <Typography color="primary" variant="h4">
+            Sign in
+          </Typography>
           {authError && <Alert severity="error">{authError}</Alert>}
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField

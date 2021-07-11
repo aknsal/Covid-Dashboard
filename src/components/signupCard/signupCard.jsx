@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignupCard() {
+export default function SignupCard({ darkMode }) {
   const classes = useStyles();
 
   const [email, setEmail] = useState("");
@@ -101,10 +101,24 @@ export default function SignupCard() {
     setLoading(false);
   }
 
+  let signupBackgroundColor = "";
+
+  if (darkMode) {
+    signupBackgroundColor = "#2b302e";
+    console.log("DarkMode True");
+  } else {
+    signupBackgroundColor = "#ebfff6";
+    console.log("DarkMode False");
+  }
+
   return (
     <div className="signup-card">
       <div>
-        <Container maxWidth="xs" className={classes.container}>
+        <Container
+          style={{ backgroundColor: signupBackgroundColor }}
+          maxWidth="xs"
+          className={classes.container}
+        >
           <CssBaseline />
           <div className={classes.paper}>
             <Typography variant="h4">Sign Up</Typography>

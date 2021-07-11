@@ -1,4 +1,11 @@
-import { AppBar, Toolbar, Button, Typography, Grid } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Typography,
+  Grid,
+  Switch,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuth } from "../context/authContext";
 import { useHistory } from "react-router";
@@ -14,6 +21,8 @@ export default function Layout({
   isLoggedin,
   handleLogout,
   logoutEmailAndPassWord,
+  darkModeSwitchHandler,
+  darkMode,
 }) {
   const classes = useStyles();
   const history = useHistory();
@@ -36,6 +45,8 @@ export default function Layout({
       <AppBar style={{ backgroundColor: "#386b5f" }}>
         <Toolbar>
           <Typography variant="h4">CoviC</Typography>
+          <Switch checked={darkMode} onChange={darkModeSwitchHandler} />
+
           <Grid container justifyContent="flex-end" alignItems="center">
             <Grid item>
               <Button color="inherit" href="/">
@@ -48,6 +59,7 @@ export default function Layout({
             <Grid item>
               <Button color="inherit">FAQ's</Button>
             </Grid>
+
             <Grid item>
               {isLoggedin ? (
                 <Button
